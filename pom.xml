@@ -71,7 +71,11 @@
       <version>6.2.0.Final</version>
     </dependency>
 
-
+     <dependency>
+      <groupId>org.postgresql</groupId>
+      <artifactId>postgresql</artifactId>
+      <version>42.2.19</version>
+    </dependency>
 
   </dependencies>
 
