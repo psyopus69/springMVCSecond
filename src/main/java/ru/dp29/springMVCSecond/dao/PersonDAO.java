@@ -22,17 +22,17 @@ public class PersonDAO {
     }
 
     public Person show(int id) {
-        return jdbcTemplate.query("SELECT * FROM Person WHERE id = ?", new Object[]{id}, new BeanPropertyRowMapper<>(Person.class)).stream().findAny().orElse(null);
+        return jdbcTemplate.query("SELECT * FROM Person WHERE id = ?", new BeanPropertyRowMapper<>(Person.class), new Object[]{id}).stream().findAny().orElse(null);
     }
 
     public void save(Person person) {
-        jdbcTemplate.update("INSERT INTO PERSON VALUES (1, ?, ?, ?)", person.getName(), person.getAge(), person.getEmail());
+        jdbcTemplate.update("INSERT INTO PERSON(name, age, email) VALUES (?, ?, ?)", person.getName(), person.getAge(), person.getEmail());
     }
 
     public void update(int id, Person updatePerson) {
         jdbcTemplate.update("UPDATE PERSON SET name=?, age=?, email=? where id=?", updatePerson.getName(), updatePerson.getAge(), updatePerson.getEmail(), id);
     }
     public void delete(int id) {
-        jdbcTemplate.update("DELETE FROM PERSON WHERE id=?", new Object[]{id});
+        jdbcTemplate.update("DELETE FROM PERSON WHERE id=?", id);
     }
 }
